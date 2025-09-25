@@ -1,9 +1,12 @@
 const { connect } = require("mongoose");
 
-function dbConnection() {
-  connect(process.env.MONGO_URI)
-    .then(() => console.log("data base connected"))
-    .catch((err) => console.log("error in data base connection:", err.message));
-}
+const dbConnection = async () => {
+  try {
+    await connect(process.env.MONGO_URI);
+    console.log("✅ Database connected");
+  } catch (err) {
+    console.error("❌ Error in database connection:", err.message);
+  }
+};
 
 module.exports = dbConnection;
