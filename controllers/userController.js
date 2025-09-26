@@ -2,14 +2,14 @@ const cartModel = require("../models/cartModels");
 const userModel = require("../models/userModels");
 const bcrypt = require("bcryptjs");
 
-const getUsers = async (req, res) => {
-  try {
-    const users = await userModel.find({});
-    res.status(200).json({ users });
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-};
+// const getUsers = async (req, res) => {
+//   try {
+//     const users = await userModel.find({});
+//     res.status(200).json({ users });
+//   } catch (err) {
+//     res.status(400).json({ error: err.message });
+//   }
+// };
 
 const getSingleUser = async (req, res) => {
   try {
@@ -86,61 +86,35 @@ const delAllUser = async (req, res) => {
   }
 };
 
-const delSingleUser = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const delUser = await userModel.findByIdAndDelete(id);
-    res.status(200).json({ delUser });
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-};
-
-const updateUser = async (req, res) => {
-  try {
-    const id = req.params.id;
-    const body = req.body;
-    const updatedUser = await userModel.findByIdAndUpdate(id, body, {
-      new: true,
-    });
-    res.status(200).json({ updatedUser });
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-};
-
-module.exports = {
-  getUsers,
-  getSingleUser,
-  createUser,
-  loginUser,
-  delSingleUser,
-  delAllUser,
-  updateUser,
-};
-
-// const addCartItem = async (req, res) => {
+// const delSingleUser = async (req, res) => {
 //   try {
-//     const { cart, userId } = req.body;
-
-//     // Find the cart for this user (already guaranteed to exist)
-//     const userCart = await cartModel.findOne({ userId });
-
-//     // Check if item already exists (use productId if available instead of name)
-//     const exists = userCart.items.find(
-//       (item) => item.name === cart.name && item.price === cart.price
-//     );
-
-//     if (exists) {
-//       return res.status(400).json({ error: "Item already in cart" });
-//     }
-
-//     // Otherwise, add item
-//     userCart.items.push({ name: cart.name, price: cart.price });
-//     await userCart.save();
-
-//     res.status(201).json({ cart: userCart });
+//     const id = req.params.id;
+//     const delUser = await userModel.findByIdAndDelete(id);
+//     res.status(200).json({ delUser });
 //   } catch (err) {
 //     res.status(400).json({ error: err.message });
 //   }
 // };
+
+// const updateUser = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const body = req.body;
+//     const updatedUser = await userModel.findByIdAndUpdate(id, body, {
+//       new: true,
+//     });
+//     res.status(200).json({ updatedUser });
+//   } catch (err) {
+//     res.status(400).json({ error: err.message });
+//   }
+// };
+
+module.exports = {
+  // getUsers,
+  getSingleUser,
+  createUser,
+  loginUser,
+  // delSingleUser,
+  delAllUser,
+  // updateUser,
+};
